@@ -44,10 +44,10 @@ class ClassifierModel:
 
     def set_input(self, data):
         input_edge_features = torch.from_numpy(data['edge_features']).float()
-        labels = torch.from_numpy(data['label']).long()
+        self.labels = data['label']
         # set inputs
         self.edge_features = input_edge_features.to(self.device).requires_grad_(self.is_train)
-        self.labels = labels.to(self.device)
+        # self.labels = labels.to(self.device)
         self.mesh = data['mesh']
         if self.opt.dataset_mode == 'segmentation' and not self.is_train:
             self.soft_label = torch.from_numpy(data['soft_label'])
@@ -121,6 +121,8 @@ class ClassifierModel:
             correct = pred.eq(labels).sum()
         elif self.opt.dataset_mode == 'segmentation':
             correct = seg_accuracy(pred, self.soft_label, self.mesh)
+        elif self.opt.dataset_mode == 'denoise':
+            correct = 89
         return correct
 
     def export_segmentation(self, pred_seg):

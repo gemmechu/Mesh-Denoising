@@ -10,6 +10,9 @@ def CreateDataset(opt):
     elif opt.dataset_mode == 'classification':
         from data.classification_data import ClassificationData
         dataset = ClassificationData(opt)
+    elif opt.dataset_mode == 'denoise':
+        from data.denoise_data import DenoiseData
+        dataset = DenoiseData(opt)
     return dataset
 
 

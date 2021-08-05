@@ -7,6 +7,16 @@ from util.writer import Writer
 def run_test(epoch=-1):
     print('Running Test')
     opt = TestOptions().parse()
+    opt.dataroot = "datasets/human_seg"
+    opt.name = "human_seg"
+    opt.arch ="meshunet"
+    opt.dataset_mode ="segmentation"
+    opt.ncf =[32, 64,128, 256] 
+    opt.ninput_edges = 2280 
+    opt.pool_res = [1800, 1350, 600]
+    opt.resblocks = 3 
+    opt.batch_size = 12 
+    opt.export_folder = "meshes"
     opt.serial_batches = True  # no shuffle
     dataset = DataLoader(opt)
     model = create_model(opt)

@@ -115,6 +115,8 @@ def define_loss(opt):
         loss = torch.nn.CrossEntropyLoss()
     elif opt.dataset_mode == 'segmentation':
         loss = torch.nn.CrossEntropyLoss(ignore_index=-1)
+    elif opt.dataset_mode == 'denoise':
+        loss = torch.nn.MSELoss()
     return loss
 
 ##############################################################################

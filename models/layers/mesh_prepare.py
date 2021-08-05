@@ -432,3 +432,6 @@ def fixed_division(to_div, epsilon):
     else:
         to_div += epsilon
     return to_div
+def mid_point(mesh, features):
+        for edge_id, edge in enumerate(mesh.edges):
+            features[edge_id].extend(list((mesh.vs[edge[0]] + mesh.vs[edge[1]]) / 2))

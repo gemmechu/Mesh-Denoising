@@ -7,6 +7,23 @@ from test import run_test
 
 if __name__ == '__main__':
     opt = TrainOptions().parse()
+    opt.dataroot = "datasets/denoise"
+    opt.name= "denoise"
+    opt.arch = "meshunet"
+    opt.dataset_mode = "denoise"
+    
+    opt.ncf = [32, 64, 128, 256]
+    opt.ninput_edges = 750000
+    opt.pool_res = [1800, 1350, 600]
+    # opt.norm = "group"
+    opt.resblocks = 3 
+    # opt.flip_edges = 0.2 
+    # opt.batch_size = 2
+    opt.lr = 0.001
+    opt.slide_verts =0.2 
+    
+    # opt.num_aug =20 
+    # opt.niter_decay =100 
     dataset = DataLoader(opt)
     dataset_size = len(dataset)
     print('#training meshes = %d' % dataset_size)

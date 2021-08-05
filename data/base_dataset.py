@@ -30,7 +30,7 @@ class BaseDataset(data.Dataset):
             self.opt.num_aug = 1
             mean, std = np.array(0), np.array(0)
             for i, data in enumerate(self):
-                if i % 500 == 0:
+                if i % 10 == 0:
                     print('{} of {}'.format(i, self.size))
                 features = data['edge_features']
                 mean = mean + features.mean(axis=1)
